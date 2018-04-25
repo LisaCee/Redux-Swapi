@@ -1,4 +1,4 @@
-// we'll need axios
+// we'll need axio
 
 // we'll need to create 3 different action types here.
 // one for fetching, one for fetched and one for errors
