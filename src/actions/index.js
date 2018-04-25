@@ -16,15 +16,17 @@ export const ERROR = 'ERROR'
 
 export const getCharacters = () => {
     const request = axios.get(`https://swapi.co/api/people/`)
+
     return (dispatch) => {
-        dispatch({type: FETCHING})
-        setTimeout(() =>
-           request.then((data) => {
-               dispatch({type: FETCHED, payload: data})
+        // console.log('request: ', request);
+        request.then(({data}) => {
+               console.log(data);
+               dispatch({type: FETCHED, payload: data.results})
            })
            .catch(err => {
                dispatch({type: ERROR, error: console.log(err)})
-           }), 2000
-        )
+           })
+        //    , 2000
+        // )
     };
 };

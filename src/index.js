@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
-import { thunk } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import { App } from './components';
-import combineReducers from './reducers';
+import { charsReducer } from './reducers/starWarsReducer';
 
-const store = createStore(
-  combineReducers,applyMiddleware(thunk)
-  );
+const store = createStore(charsReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <Provider store={store}>
