@@ -10,11 +10,7 @@ import { App } from './components';
 import combineReducers from './reducers';
 
 const store = createStore(
-  combineReducers,
-    applyMiddleware(
-      logger,
-      thunk
-    )
+  combineReducers,applyMiddleware(thunk)
   );
 
 ReactDOM.render(

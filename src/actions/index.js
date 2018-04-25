@@ -9,19 +9,22 @@
 // remember that now we have control over our thunk-based
 import axios from 'axios';
 
-export const GET_CHARS = 'GET_CHARS'
-export const ERROR =  'ERROR'
+export const FETCHING = 'FETCHING'
+export const FETCHED =  'FETCHED'
+export const ERROR = 'ERROR'
 
 
 export const getCharacters = () => {
     const request = axios.get(`https://swapi.co/api/people/`)
     return (dispatch) => {
-        request.then(({ data }) => {
-            dispatch({ type: GET_CHARS, payload: data })
-        })
-        .catch(err => {
-            dispatch({ type: ERROR, error: console.log(err) })
-        });
-
+        dispatch({type: FETCHING})
+        setTimeout(() =>
+           request.then((data) => {
+               dispatch({type: FETCHED, payload: data})
+           })
+           .catch(err => {
+               dispatch({type: ERROR, error: console.log(err)})
+           }), 2000
+        )
     };
 };
